@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="../Estilos/General.css" />
+    <title>APANJE - Programas</title>
+</head>
+<body>
+<header>
+    <div class="logo-container">
+        <div class="logo-img">
+            <img src="../Imagenes/logo.jpg" alt="APANJE Logo" id="logo" />
+        </div>
+        <div class="logo-text">
+            <h1>APANJE</h1>
+            <p>Asociación de Padres y Amigos de Niños y Jóvenes Especiales</p>
+        </div>
+    </div>
+
+    <div class="menu-toggle" id="menu-toggle">&#9776;</div>
+
+    <nav>
+        <ul>
+            <li><a href="../index.html">Inicio</a></li>
+            <li><a href="../paginas/about.html">Nosotros</a></li>
+            <li><a href="../paginas/Programan.html">Programas</a></li>
+            <li><a href="../paginas/news.html">Noticias</a></li>
+            <li><a href="../paginas/Colaboration.html">Colabora</a></li>
+            <li><a href="../paginas/contact.html">Contacto</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main class="container">
+    <h1 class="fade-in">Programas de APANJE</h1>
+    <p class="fade-in">En APANJE ofrecemos una variedad de programas para apoyar a niños y jóvenes con discapacidad:</p>
+
+    <section class="programs-section fade-in">
+        <h2>Programas y Áreas de Trabajo</h2>
+
+        <div class="program-list">
+            <ul>
+                <li>Escuela para padres</li>
+                <li>Terapia funcional</li>
+                <li>Terapia ocupacional</li>
+                <li>Terapia recreativa y cultural</li>
+                <li>Integración social</li>
+                <li>Psicología</li>
+                <li>Educación especial y estimulación temprana</li>
+            </ul>
+        </div>
+
+        <div class="industry-artesanal">
+            <h3>Industria Artesanal</h3>
+            <p>
+                El programa de industria artesanal promueve la venta de productos elaborados en su totalidad por alumnos y alumnas de APANJE. La venta de nuestros productos nos permite obtener fondos para continuar con nuestra gran labor.
+            </p>
+
+            <h4>Productos disponibles:</h4>
+            <div class="product-grid">
+                <div class="product-card">Miel</div>
+                <div class="product-card">Piñatas</div>
+                <div class="product-card">Especies</div>
+                <div class="product-card">Café</div>
+                <div class="product-card">Encurtidos</div>
+            </div>
+
+            <p class="support-message">
+                Si deseas apoyarnos puedes contactarnos para realizar tu pedido.
+            </p>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2025 APANJE - Asociación de Padres y Amigos de Niños y Jóvenes Especiales</p>
+</footer>
+
+<script>
+    // Resaltar la sección activa en la barra de navegación
+    document.addEventListener('DOMContentLoaded', () => {
+        const navLinks = document.querySelectorAll('nav a');
+        const currentPath = window.location.pathname.toLowerCase();
+        navLinks.forEach(link => {
+            const linkPath = link.getAttribute('href').toLowerCase().split('/').pop();
+            const pagePath = currentPath.split('/').pop();
+            if (linkPath === pagePath) {
+                link.classList.add('active-link');
+            } else {
+                link.classList.remove('active-link');
+            }
+            link.addEventListener('click', function () {
+                navLinks.forEach(l => l.classList.remove('active-link'));
+                this.classList.add('active-link');
+            });
+        });
+    });
+
+    // Animación fade-in al hacer scroll
+    document.addEventListener('DOMContentLoaded', () => {
+        const faders = document.querySelectorAll('.fade-in');
+
+        const appearOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const appearOnScroll = new IntersectionObserver(function (entries, appearOnScroll) {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add('visible');
+                appearOnScroll.unobserve(entry.target);
+            });
+        }, appearOptions);
+
+        faders.forEach(fader => {
+            appearOnScroll.observe(fader);
+        });
+    });
+
+    // Menú toggle para móviles
+    const menuToggle = document.getElementById('menu-toggle');
+    const navUl = document.querySelector('header nav ul');
+
+    if (menuToggle && navUl) {
+        menuToggle.addEventListener('click', () => {
+            navUl.classList.toggle('active');
+        });
+    }
+</script>
+</body>
+</html>
