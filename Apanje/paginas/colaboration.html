@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="../Estilos/General.css" />
+  <title>APANJE - Colabora</title>
+</head>
+<body>
+<header>
+  <div class="logo-container">
+    <div class="logo-img">
+      <img src="../Imagenes/logo.jpg" alt="APANJE Logo" id="logo" />
+    </div>
+    <div class="logo-text">
+      <h1>APANJE</h1>
+      <p>Asociación de Padres y Amigos de Niños y Jóvenes Especiales</p>
+    </div>
+  </div>
+
+  <div class="menu-toggle" id="menu-toggle">&#9776;</div>
+
+  <nav>
+    <ul>
+      <li><a href="../index.html">Inicio</a></li>
+      <li><a href="../paginas/about.html">Nosotros</a></li>
+      <li><a href="../paginas/Programan.html">Programas</a></li>
+      <li><a href="../paginas/news.html">Noticias</a></li>
+      <li><a href="../paginas/Colaboration.html">Colabora</a></li>
+      <li><a href="../paginas/contact.html">Contacto</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="container">
+  <section class="fade-in">
+    <h2>Colabora con APANJE</h2>
+    <p>Tu apoyo es fundamental para continuar con nuestra labor. Aquí te mostramos algunas formas en las que puedes colaborar:</p>
+  </section>
+
+  <section class="colabora-section fade-in">
+    <div class="colabora-grid">
+      <!-- Donaciones -->
+      <div class="colabora-card donaciones">
+        <h3>Donaciones</h3>
+        <p class="lema">“Más amor para los que tienen menos”</p>
+        <p>
+          Tu donación será de valioso apoyo para la Asociación de Padres y Amigos de Niños(as) y Jóvenes Especiales (APANJE).
+          También puedes contribuir comprando nuestros productos, ayudando así a cada uno de los alumnos y alumnas que participan en nuestros programas.
+        </p>
+        <p class="contacto">
+          <strong>Contáctanos:</strong><br />
+          Email: <a href="mailto:apanje2022@gmail.com">apanje2022@gmail.com</a><br />
+          Teléfono: 9471-0012
+        </p>
+      </div>
+
+      <!-- Voluntariado -->
+      <div class="colabora-card voluntariado">
+        <h3>Voluntariado</h3>
+        <p>¿Quieres ser parte de APANJE y contribuir al desarrollo integral de las personas con discapacidad?</p>
+        <p>
+          Únete como voluntario y sé parte del acompañamiento, la inclusión y el desarrollo de quienes más lo necesitan. Con tu tiempo, empatía y disposición, puedes ayudar a construir un entorno más solidario y respetuoso.
+        </p>
+        <p><em>¡Tu presencia puede transformar vidas… y también la tuya!</em></p>
+        <p class="contacto">
+          <strong>Envíanos tu currículum:</strong><br />
+          Email: <a href="mailto:apanje2022@gmail.com?subject=Envío%20de%20Currículum" target="_blank">apanje2022@gmail.com</a><br />
+          <br />
+          <a href="mailto:apanje2022@gmail.com?subject=Envío%20de%20Currículum" class="btn" target="_blank">Enviar currículum</a>
+        </p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p>&copy; 2025 APANJE - Asociación de Padres y Amigos de Niños y Jóvenes Especiales</p>
+</footer>
+
+<script>
+  // Resaltar sección activa en navbar
+  document.addEventListener('DOMContentLoaded', () => {
+    const navLinks = document.querySelectorAll('nav a');
+    const currentPath = window.location.pathname.toLowerCase();
+    navLinks.forEach(link => {
+      const linkPath = link.getAttribute('href').toLowerCase().split('/').pop();
+      const pagePath = currentPath.split('/').pop();
+      if (linkPath === pagePath) {
+        link.classList.add('active-link');
+      } else {
+        link.classList.remove('active-link');
+      }
+      link.addEventListener('click', function () {
+        navLinks.forEach(l => l.classList.remove('active-link'));
+        this.classList.add('active-link');
+      });
+    });
+  });
+
+  // Animación fade-in al hacer scroll
+  document.addEventListener('DOMContentLoaded', () => {
+    const faders = document.querySelectorAll('.fade-in');
+
+    const appearOptions = {
+      threshold: 0.1,
+      rootMargin: "0px 0px -50px 0px"
+    };
+
+    const appearOnScroll = new IntersectionObserver(function (entries, appearOnScroll) {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('visible');
+        appearOnScroll.unobserve(entry.target);
+      });
+    }, appearOptions);
+
+    faders.forEach(fader => {
+      appearOnScroll.observe(fader);
+    });
+  });
+
+  // Menú toggle para móviles
+  const menuToggle = document.getElementById('menu-toggle');
+  const navUl = document.querySelector('header nav ul');
+
+  if (menuToggle && navUl) {
+    menuToggle.addEventListener('click', () => {
+      navUl.classList.toggle('active');
+    });
+  }
+</script>
+
+</body>
+</html>

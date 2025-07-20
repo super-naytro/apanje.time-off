@@ -1,0 +1,155 @@
+</main>
+
+    <footer>
+        <p>&copy; 2025 APANJE - Asociación de Padres y Amigos de Niños y Jóvenes Especiales</p>
+    </footer>
+
+<script>
+  // Resaltar la sección activa en la barra de navegación
+  document.addEventListener('DOMContentLoaded', () => {
+    const navLinks = document.querySelectorAll('nav a');
+    const currentPath = window.location.pathname.toLowerCase();
+    navLinks.forEach(link => {
+      // Normalizar rutas para comparar solo el nombre del archivo
+      const linkPath = link.getAttribute('href').toLowerCase().split('/').pop();
+      const pagePath = currentPath.split('/').pop();
+      if (linkPath === pagePath) {
+        link.classList.add('active-link');
+      } else {
+        link.classList.remove('active-link');
+      }
+      // Transición al hacer clic
+      link.addEventListener('click', function() {
+        navLinks.forEach(l => l.classList.remove('active-link'));
+        this.classList.add('active-link');
+      });
+    });
+  });
+
+  // Animación fade-in al hacer scroll
+  document.addEventListener('DOMContentLoaded', () => {
+    const faders = document.querySelectorAll('.fade-in');
+
+    const appearOptions = {
+      threshold: 0.1,
+      rootMargin: "0px 0px -50px 0px"
+    };
+
+    const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('visible');
+        appearOnScroll.unobserve(entry.target);
+      });
+    }, appearOptions);
+
+    faders.forEach(fader => {
+      appearOnScroll.observe(fader);
+    });
+  });
+
+  // Menú toggle para móviles
+  const menuToggle = document.getElementById('menu-toggle');
+  const navUl = document.querySelector('header nav ul');
+
+  if(menuToggle && navUl) {
+    menuToggle.addEventListener('click', () => {
+      navUl.classList.toggle('active');
+    });
+  }
+</script>
+</body>
+<script>
+  // Resaltar la sección activa en la barra de navegación
+  document.addEventListener('DOMContentLoaded', () => {
+    const navLinks = document.querySelectorAll('nav a');
+    const currentPath = window.location.pathname.toLowerCase();
+    navLinks.forEach(link => {
+      const linkPath = link.getAttribute('href').toLowerCase().split('/').pop();
+      const pagePath = currentPath.split('/').pop();
+      if (linkPath === pagePath) {
+        link.classList.add('active-link');
+      } else {
+        link.classList.remove('active-link');
+      }
+      link.addEventListener('click', function() {
+        navLinks.forEach(l => l.classList.remove('active-link'));
+        this.classList.add('active-link');
+      });
+    });
+  });
+</script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../Estilos/General.css">
+    <title>APANJE - Noticias</title>
+</head>
+<body>
+
+   <header>
+    <div class="logo-container">
+        <div class="logo-img">
+            <img src="../Imagenes/logo.jpg" alt="APANJE Logo" id="logo">
+        </div>
+        <div class="logo-text">
+            <h1>APANJE</h1>
+            <p>Asociación de Padres y Amigos de Niños y Jóvenes Especiales</p>
+        </div>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="../index.html">Inicio</a></li>
+            <li><a href="../paginas/about.html">Nosotros</a></li>
+            <li><a href="../paginas/Programan.html">Programas</a></li>
+            <li><a href="../paginas/news.html">Noticias</a></li>
+            <li><a href="../paginas/Colaboration.html">Colabora</a></li>
+            <li><a href="../paginas/contact.html">Contacto</a></li>
+        </ul>
+    </nav>
+    </header>
+
+    <main class="container">
+
+        <section>
+  <h2>Últimas Noticias</h2>
+
+  <div class="news-card fade-in">
+    <div class="news-image">
+      <!-- Aquí va la imagen de la noticia -->
+      <img src="ruta-de-la-imagen.jpg" alt="Descripción de la imagen" />
+    </div>
+    <div class="news-content">
+      <h3>Título de la Noticia</h3>
+      <p class="news-date">Fecha de publicación</p>
+      <p>Descripción breve o resumen de la noticia que se quiere mostrar.</p>
+      <!-- Opcional: enlace para leer más -->
+      <a href="enlace-a-noticia.html" class="btn-readmore">Leer más</a>
+    </div>
+  </div>
+
+  <!-- Copiar y pegar este div para añadir más noticias -->
+
+  <div class="news-card fade-in">
+    <div class="news-image">
+      <img src="ruta-de-la-imagen.jpg" alt="Descripción de la imagen" />
+    </div>
+    <div class="news-content">
+      <h3>Otro título de noticia</h3>
+      <p class="news-date">Fecha de publicación</p>
+      <p>Descripción breve o resumen de la noticia que se quiere mostrar.</p>
+      <a href="enlace-a-noticia.html" class="btn-readmore">Leer más</a>
+    </div>
+  </div>
+</section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 APANJE - Asociación de Padres y Amigos de Niños y Jóvenes Especiales</p>
+    </footer>
+
+</body>
+</html>

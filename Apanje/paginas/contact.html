@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="../Estilos/General.css" />
+  <title>APANJE - Contacto</title>
+</head>
+<body>
+<header>
+  <div class="logo-container">
+    <div class="logo-img">
+      <img src="../Imagenes/logo.jpg" alt="APANJE Logo" id="logo" />
+    </div>
+    <div class="logo-text">
+      <h1>APANJE</h1>
+      <p>Asociación de Padres y Amigos de Niños y Jóvenes Especiales</p>
+    </div>
+  </div>
+
+  <div class="menu-toggle" id="menu-toggle">&#9776;</div>
+
+  <nav>
+    <ul>
+      <li><a href="../index.html">Inicio</a></li>
+      <li><a href="../paginas/about.html">Nosotros</a></li>
+      <li><a href="../paginas/Programan.html">Programas</a></li>
+      <li><a href="../paginas/news.html">Noticias</a></li>
+      <li><a href="../paginas/Colaboration.html">Colabora</a></li>
+      <li><a href="../paginas/contact.html">Contacto</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="container">
+  <section class="contact-section fade-in">
+    <h2>📬 Contáctanos</h2>
+
+    <p class="info-line">📧 <strong>Email:</strong> <a href="mailto:apanje2022@gmail.com">apanje2022@gmail.com</a></p>
+    <p class="info-line">📞 <strong>Teléfono:</strong> 9471-0012</p>
+    <p class="info-line">📍 <strong>Dirección:</strong> Colonia Residencial Santa María, bloque 52, lote N°1, carretera a Valle de Ángeles, entrada a la Colonia El Sitio.</p>
+
+    <h3>🌐 Redes Sociales</h3>
+    <ul class="social-list">
+      <li>📘 Facebook: <strong>APANJE</strong></li>
+      <li>📸 Instagram: <strong>@apanje_hn</strong></li>
+    </ul>
+  </section>
+</main>
+
+<footer>
+  <p>&copy; 2025 APANJE - Asociación de Padres y Amigos de Niños y Jóvenes Especiales</p>
+</footer>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Resaltar la sección activa en la barra de navegación
+    const navLinks = document.querySelectorAll('nav a');
+    const currentPath = window.location.pathname.toLowerCase();
+    navLinks.forEach(link => {
+      const linkPath = link.getAttribute('href').toLowerCase().split('/').pop();
+      const pagePath = currentPath.split('/').pop();
+      if (linkPath === pagePath) {
+        link.classList.add('active-link');
+      } else {
+        link.classList.remove('active-link');
+      }
+      link.addEventListener('click', function() {
+        navLinks.forEach(l => l.classList.remove('active-link'));
+        this.classList.add('active-link');
+      });
+    });
+
+    // Animación fade-in al hacer scroll
+    const faders = document.querySelectorAll('.fade-in');
+    const appearOptions = {
+      threshold: 0.1,
+      rootMargin: "0px 0px -50px 0px"
+    };
+    const appearOnScroll = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      });
+    }, appearOptions);
+    faders.forEach(fader => appearOnScroll.observe(fader));
+
+    // Menú toggle para móviles
+    const menuToggle = document.getElementById('menu-toggle');
+    const navUl = document.querySelector('header nav ul');
+    if(menuToggle && navUl) {
+      menuToggle.addEventListener('click', () => {
+        navUl.classList.toggle('active');
+      });
+    }
+  });
+</script>
+</body>
+</html>

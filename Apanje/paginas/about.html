@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="../Estilos/General.css" />
+    <title>APANJE - Nosotros</title>
+</head>
+<body>
+
+<header>
+    <div class="logo-container">
+        <div class="logo-img">
+            <img src="../Imagenes/logo.jpg" alt="APANJE Logo" id="logo" />
+        </div>
+        <div class="logo-text">
+            <h1>APANJE</h1>
+            <p>Asociación de Padres y Amigos de Niños y Jóvenes Especiales</p>
+        </div>
+    </div>
+
+    <div class="menu-toggle" id="menu-toggle">&#9776;</div>
+
+    <nav>
+        <ul>
+            <li><a href="../index.html">Inicio</a></li>
+            <li><a href="../paginas/about.html">Nosotros</a></li>
+            <li><a href="../paginas/Programan.html">Programas</a></li>
+            <li><a href="../paginas/news.html">Noticias</a></li>
+            <li><a href="../paginas/Colaboration.html">Colabora</a></li>
+            <li><a href="../paginas/contact.html">Contacto</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main class="container">
+
+    <section class="fade-in">
+        <h2>Sobre Nosotros</h2>
+        <p>APANJE es una organización sin fines de lucro dedicada a apoyar a niños y jóvenes con discapacidad y sus familias. Nuestro objetivo es promover la inclusión y el bienestar de nuestros beneficiarios a través de programas de rehabilitación, educación y apoyo familiar.</p>
+    </section>
+
+    <section class="about-section fade-in">
+        <h2>¿Quiénes Somos?</h2>
+        <p>
+            APANJE es una institución sin fines de lucro dedicada a mejorar la calidad de vida de los niños, niñas, jóvenes y adultos con discapacidad intelectual y otras patologías comórbidas.
+            Desarrollamos en nuestros alumnos y alumnas habilidades, destrezas, hábitos de salud, higiene y normas de conducta adecuadas para promover su desarrollo individual, social y laboral.
+        </p>
+
+        <div class="about-grid">
+            <div class="about-card mission">
+                <h3>Misión</h3>
+                <p>
+                    Somos una institución sin fines de lucro dedicada a mejorar las condiciones de vida de los niños, niñas y jóvenes con discapacidad intelectual, mediante la prestación de servicios y talleres vocacionales.
+                </p>
+            </div>
+
+            <div class="about-card vision">
+                <h3>Visión</h3>
+                <p>
+                    Ser una institución con presencia nacional ofreciendo a las personas con discapacidad intelectual servicios integrales de rehabilitación que promuevan su desarrollo individual, social y laboral; procurando optimizar recursos y sostenibilidad financiera que garantice permanencia.
+                </p>
+            </div>
+        </div>
+
+        <div class="history">
+            <h3>Historia Institucional</h3>
+            <p>
+                Desde 1996 la Asociación de Padres y Amigos de Niños(as) y Jóvenes Especiales (APANJE) funciona como escuela de educación especial.
+                Inicialmente ubicada en la colonia El Prado, 1ra y 2da avenida en Comayagüela, municipio del Distrito Central. Ahora ubicada en Residencial Santa María, carretera a Valle de Ángeles.
+            </p>
+            <p>
+                La población que atiende APANJE representa diversos tipos de patologías en los diferentes niveles de discapacidad intelectual, problemas de audición, lenguaje, autismo, síndrome de Down y problemas físicos.
+                Sus edades cronológicas abarcan desde los 12 años en adelante, sin embargo, la edad mental de los alumnos y alumnas ronda alrededor de los 6 años.
+            </p>
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    <p>&copy; 2025 APANJE - Asociación de Padres y Amigos de Niños y Jóvenes Especiales</p>
+</footer>
+
+<script>
+    // Resaltar la sección activa en la barra de navegación
+    document.addEventListener('DOMContentLoaded', () => {
+        const navLinks = document.querySelectorAll('nav a');
+        const currentPath = window.location.pathname.toLowerCase();
+        navLinks.forEach(link => {
+            const linkPath = link.getAttribute('href').toLowerCase().split('/').pop();
+            const pagePath = currentPath.split('/').pop();
+            if (linkPath === pagePath) {
+                link.classList.add('active-link');
+            } else {
+                link.classList.remove('active-link');
+            }
+            link.addEventListener('click', function () {
+                navLinks.forEach(l => l.classList.remove('active-link'));
+                this.classList.add('active-link');
+            });
+        });
+    });
+
+    // Animación fade-in al hacer scroll
+    document.addEventListener('DOMContentLoaded', () => {
+        const faders = document.querySelectorAll('.fade-in');
+
+        const appearOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const appearOnScroll = new IntersectionObserver(function (entries, appearOnScroll) {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add('visible');
+                appearOnScroll.unobserve(entry.target);
+            });
+        }, appearOptions);
+
+        faders.forEach(fader => {
+            appearOnScroll.observe(fader);
+        });
+    });
+
+    // Menú toggle para móviles
+    const menuToggle = document.getElementById('menu-toggle');
+    const navUl = document.querySelector('header nav ul');
+
+    if (menuToggle && navUl) {
+        menuToggle.addEventListener('click', () => {
+            navUl.classList.toggle('active');
+        });
+    }
+</script>
+
+</body>
+</html>
